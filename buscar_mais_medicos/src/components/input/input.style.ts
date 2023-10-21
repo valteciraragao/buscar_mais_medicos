@@ -15,6 +15,7 @@ const Div = styled.div`
     }
 `
 const Label = styled.label`
+    font-family: Poppins;
     position: absolute;
     line-height: 19.6px;
     font-size: 14px;
@@ -27,6 +28,7 @@ const Label = styled.label`
 `
 
 const Input = styled.input`
+    font-family: Poppins;
     border: 1px solid #E0E0E0;
     height: 56px;
     background-color: #fff;
@@ -47,6 +49,10 @@ const Input = styled.input`
         ~ label {
         color: #00C247;
         }
+
+        &::placeholder {
+        color: #00C247;
+    }
     }
 `
 
