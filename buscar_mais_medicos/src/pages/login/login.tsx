@@ -12,7 +12,6 @@ import {
 import Input from "../../components/input/input";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { LoginAccess } from "../../services/login";
-import { toast } from "react-toastify";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -33,11 +32,10 @@ const Login = () => {
 
   const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    try {
-      await LoginAccess(userValues);
+
+    const result = await LoginAccess(userValues);
+    if (result) {
       navigate("dashboard");
-    } catch (error) {
-      toast("error");
     }
   };
 
@@ -62,7 +60,7 @@ const Login = () => {
             id="password"
             label="Senha"
             placeholder="Digite sua senha"
-            type="password"
+            type={showPassword ? "text" : "password"}
             name="password"
             onChange={handlerUserChange}
             value={userValues.password}

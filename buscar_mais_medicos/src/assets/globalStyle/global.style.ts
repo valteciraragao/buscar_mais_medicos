@@ -7,5 +7,4 @@ export const Global = createGlobalStyle`
     box-sizing: border-box;
     font-family: Sora;
   }
-`
-
+`;
