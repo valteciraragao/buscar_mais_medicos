@@ -4,20 +4,22 @@ interface LoginParams {
 }
 
 interface UserApi {
-  id: number;
-  email: string;
-  firstName: string;
-  lastName: string;
-  profiles: [];
-  specialties: [
-    {
-      id: number;
-      name: string;
-      enabled: boolean;
-    }
-  ];
-  phone: string;
-  address: string;
-  enabled: boolean;
-  totalElements: number;
+  content: {
+    id: number;
+    email: string;
+    firstName: string;
+    lastName: string;
+    profiles: [];
+    specialties: [
+      {
+        id: number;
+        name: string;
+        enabled: boolean;
+      }
+    ];
+    phone: string;
+    address: string;
+    enabled: boolean;
+    totalElements: number;
+  };
 }

@@ -9,24 +9,26 @@ type TableProps = {
 };
 
 const RequestTable = ({ columnTitle, apiData }: TableProps) => {
-  <S.Table>
-    <S.TableHeader>
-      <tr>
-        {columnTitle.map((column) => (
-          <S.TitleColumn>{column}</S.TitleColumn>
-        ))}
-      </tr>
-    </S.TableHeader>
-    <tbody>
-      {apiData.map((rowData) => (
+  return (
+    <S.Table>
+      <S.TableHeader>
         <tr>
-          {Object.values(rowData).map((rowValue) => (
-            <td>{rowValue}</td>
+          {columnTitle.map((column) => (
+            <S.TitleColumn>{column}</S.TitleColumn>
           ))}
         </tr>
-      ))}
-    </tbody>
-  </S.Table>;
+      </S.TableHeader>
+      <tbody>
+        {apiData.map((rowData) => (
+          <tr>
+            {Object.values(rowData).map((rowValue) => (
+              <td>{rowValue}</td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
+    </S.Table>
+  );
 };
 
 export default RequestTable;

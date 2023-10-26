@@ -1,25 +1,53 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import RequestTable from "../../components/table";
 import { GetLoginAcess } from "../../services/user";
+import S from "./style";
+import { Link } from "react-router-dom";
+import seta from "../../assets/images/dashboard/Arrows/right-small.svg";
+
+type UserDataProps = {
+  name: string;
+  profiles: string;
+  phone: string;
+  email: string;
+};
 
 const columns = ["Usuário", "E-mail", "Wathsapp", "Tipo de usuário"];
 
-const data = [];
-
 const Dashboard = () => {
+  const [users, setUsers] = useState<UserDataProps[]>([]);
+
   useEffect(() => {
-    const responseUsers = async ()=> {
-      const result = await GetLoginAcess()}
-  }, [])
+    const responseUsers = async () => {
+      const result = await GetLoginAcess();
+      const userEdited = result?.content.reduce((acumulator, updateValue) => {
+        const user = {
+          name: updateValue.firstName + " " + updateValue.lastName,
+          email: updateValue.email,
+          phone: updateValue.phone,
+          profiles: updateValue.profiles[1],
+        };
+        return [...acumulator, user];
+      }, [] as UserDataProps[]);
+      setUsers(userEdited ?? []);
+    };
+
+    responseUsers();
+  }, []);
   return (
     <div>
       <div></div>
-      <div>
-        <div></div>
-        <div>
-          <RequestTable columnTitle={columns} apiData={data} />
-        </div>
-      </div>
+      <S.TableContainer>
+        <S.Header>
+          <p>Últimos usuários cadastrados</p>
+          <Link to={"users"}>
+            Ver tudo <img src={seta} alt="seta" />
+          </Link>
+        </S.Header>
+        <S.Table>
+          <RequestTable columnTitle={columns} apiData={users} />
+        </S.Table>
+      </S.TableContainer>
     </div>
   );
 };

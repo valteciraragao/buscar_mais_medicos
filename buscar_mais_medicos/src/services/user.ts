@@ -1,11 +1,11 @@
-import { isAxiosError } from "axios";
+import { AxiosResponse, isAxiosError } from "axios";
 import api from "./config";
 import { toast } from "react-toastify";
 
 export async function GetLoginAcess() {
   try {
     const tokenAuthorization = localStorage.getItem("token");
-    const response = await api.get("user", {
+    const response: AxiosResponse<UserApi> = await api.get("users", {
       headers: {
         Authorization: `Bearer ${tokenAuthorization}`,
       },
@@ -16,16 +16,10 @@ export async function GetLoginAcess() {
       },
     });
 
-    return response.data;
+    return response.data.content;
   } catch (error) {
     if (isAxiosError(error)) {
-      if (error.response?.status === 401) {
-        toast("Senha incorreta");
-      }
-      if (error.response?.status === 404) {
-        toast("Usuário não encontrado");
-      }
+      toast("Ocorreu um erro em nossos servidores, tente novamente mais tarde");
     }
-    toast("Ocorreu um erro em nossos servidores, tente novamente mais tarde");
   }
 }
