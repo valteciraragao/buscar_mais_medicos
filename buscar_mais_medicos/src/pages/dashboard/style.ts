@@ -1,10 +1,9 @@
 import styled from "styled-components";
 
 const TableContainer = styled.div`
-  max-width: 1582px;
+  width: 100vw;
   height: 530px;
-  margin-top: 20px;
-  margin-left: 35px;
+  margin: 20px 35px;
   background-color: #ffffff;
   border-radius: 24px;
   box-shadow: 0px 7px 30px 0px #bbc0cd66;
@@ -30,8 +29,9 @@ const Header = styled.div`
 `;
 
 const Table = styled.div`
+  margin: 10px 10px;
   table {
-    width: 1534px;
+    width: 90vw;
   }
 `;
 

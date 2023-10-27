@@ -20,12 +20,14 @@ const Dashboard = () => {
   useEffect(() => {
     const responseUsers = async () => {
       const result = await GetLoginAcess();
+      console.log(result);
       const userEdited = result?.content.reduce((acumulator, updateValue) => {
         const user = {
           name: updateValue.firstName + " " + updateValue.lastName,
           email: updateValue.email,
           phone: updateValue.phone,
-          profiles: updateValue.profiles[1],
+          profiles:
+            updateValue.profiles.length > 0 ? updateValue.profiles[0] : "",
         };
         return [...acumulator, user];
       }, [] as UserDataProps[]);

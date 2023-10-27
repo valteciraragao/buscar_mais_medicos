@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 export async function LoginAccess({ email, password }: LoginParams) {
   try {
     const responseLogin = await api.post(
-      "login",
+      "public/register/login",
       {},
       {
         params: {

@@ -35,7 +35,7 @@ const Login = () => {
 
     const result = await LoginAccess(userValues);
     if (result) {
-      navigate("dashboard");
+      navigate("_/dashboard");
     }
   };
 
