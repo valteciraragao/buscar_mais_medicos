@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import RequestTable from "../../components/table";
-import { GetLoginAcess } from "../../services/user";
+import { GetDasboardAcess } from "../../services/user";
 import S from "./style";
 import { Link } from "react-router-dom";
 import seta from "../../assets/images/dashboard/Arrows/right-small.svg";
 
 type UserDataProps = {
   name: string;
-  profiles: string;
+  profiles: string[];
   phone: string;
   email: string;
 };
@@ -19,15 +19,16 @@ const Dashboard = () => {
 
   useEffect(() => {
     const responseUsers = async () => {
-      const result = await GetLoginAcess();
-      console.log(result);
+      const result = await GetDasboardAcess();
       const userEdited = result?.content.reduce((acumulator, updateValue) => {
         const user = {
           name: updateValue.firstName + " " + updateValue.lastName,
           email: updateValue.email,
           phone: updateValue.phone,
           profiles:
-            updateValue.profiles.length > 0 ? updateValue.profiles[0] : "",
+            updateValue.profiles.length > 0
+              ? updateValue.profiles[0].name
+              : "-",
         };
         return [...acumulator, user];
       }, [] as UserDataProps[]);

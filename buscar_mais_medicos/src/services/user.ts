@@ -2,7 +2,7 @@ import { AxiosResponse, isAxiosError } from "axios";
 import api from "./config";
 import { toast } from "react-toastify";
 
-export async function GetLoginAcess() {
+export async function GetDasboardAcess() {
   try {
     const tokenAuthorization = localStorage.getItem("token");
     const response: AxiosResponse<UserApi> = await api.get("users", {
